@@ -16,9 +16,18 @@ android {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        release { 
+            storeFile file('spa-release-key.jks')  // Ruta al archivo .jks
+            storePassword 'Lourdes0406'                   // Contraseña del keystore
+            keyAlias 'spa-key'                              // Alias de la clave
+            keyPassword 'Lourdes0406'                     // Contraseña de la clave
+        }
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources false                          // Desactiva para pruebas, activa para producción
+            signingConfig signingConfigs.release           // Usa la configuración de firma release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
