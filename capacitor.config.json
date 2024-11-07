@@ -1,5 +1,8 @@
 {
   "appId": "com.SpaSentirseBien.Mobile",
   "appName": "Spa Sentirse Bien 1",
-  "webDir": "dist"
+  "webDir": "dist",
+  "server": {
+        "url": "https://amiable-learning-production.up.railway.app"
+    }
 }

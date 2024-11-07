@@ -36,20 +36,6 @@ const Header2 = ({ menuOpen, setMenuOpen }) => {
     esCliente() && { text: "Mi cuenta", path: "/MisTurnos" }
   ].filter(Boolean);
 
-  //para los usuarios que no son clientes
-  const itemsAdministrativos = [
-    {text: "Clientes registrados", path: "/administracion/clientes" },
-    admin_profesional() && { text: "Turnos de clientes por profesional", path: "/administracion/clientes-por-profesional" },
-    //admin_profesional() && { text: "Turnos creados", path: "/administracion/turnos-creados" },
-    esAdmin() && { text: "Agregar turnos", path: "/administracion/agregar-turnos" },
-    admin_secretaria() && { text: "Pagos realizados", path: "/administracion/pagos" },
-    admin_secretaria() && { text: "Informe de Ingresos", path: "/administracion/ingresos" },
-    esAdmin() && { text: "Informe de servicios realizados por profesional", path: "/administracion/servicios-por-profesional" },
-    esAdmin() && { text: "Solicitudes de empleo", path: "/administracion/solicitudes-de-empleo" },
-    admin_profesional()&& { text: "Consultas", path: "/administracion/consultas" },
-  ].filter(Boolean);
-
-  const menuItems = (!hayUsuario() || esCliente()) ? itemsCorporativo : itemsAdministrativos;
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
@@ -124,7 +110,7 @@ const Header2 = ({ menuOpen, setMenuOpen }) => {
         }`}
       >
         <div className="flex flex-col space-y-2 p-4">
-          {menuItems.map(item => (
+          {itemsCorporativo.map(item => (
             <Link
               key={item.text}
               to={item.path}
