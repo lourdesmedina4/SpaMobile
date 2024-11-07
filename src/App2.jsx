@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Body from './Components/Body';
-import PagInicio from './Pages/PagInicio';
 import PagServicios from './Pages/PagServicios';
 import PagContacto
  from './Pages/PagContacto';
@@ -12,15 +10,14 @@ import Register from './Components/Register';
 import RegisterProfecional from './Components/RegisterProfecional';
 import Header2 from './Components/Header2';
 import { useLogin } from './context/LoginContext'; // Importar el contexto
-import { useAuth } from './context/AuthContext';
-import PagTurnos from './Pages/PagTurnos';
 
+import PagTurnos from './Pages/PagTurnos';
+import HolaMundo from './Pages/PagCuenta';
 
 
 function App2() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoginModalOpen, isRegisterModalOpen, isRegisterProfesionalOpen, handleModalClose } = useLogin(); // Acceder al contexto
-  const {esPorfesional} = useAuth();
 
   return (
     <>
@@ -31,10 +28,10 @@ function App2() {
       
       <div className={`transition-all duration-300 ease-in-out ${menuOpen ? 'ml-64' : 'ml-0'}`}>
         <Routes>
-          <Route path="/" element={<PagInicio />} /> 
-          <Route path="/servicios" element={<PagServicios/>} />
+          <Route path="/" element={<PagTurnos />} /> 
+          <Route path="/sacarturno" element={<PagServicios/>} />
           <Route path="/contacto" element={<PagContacto/>} />
-          <Route path='/MisTurnos' element={<PagTurnos/>}/>
+          <Route path='/micuenta' element={<HolaMundo/>}/>
 
         </Routes>
       </div>

@@ -61,20 +61,22 @@ const SolicitarTurno =()=>{
                 </p>
                 {/* Central Button Container */}
                 <div className="absolute inset-x-0 bottom-0 flex justify-center">
-                  <button
+                
+                </div>
+              </div>
+
+              {/* Grid Right */}
+               <div className="flex items-start justify-center">
+
+               {/*  <SpaNumbers /> */}
+               <button
                     size="lg"
                     onClick={handleTurnoClick}
                     className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1"
                   >
                     Pedir un Turno
                   </button>
-                </div>
-              </div>
-
-              {/* Grid Right */}
-              <div className="flex items-start justify-center">
-                <SpaNumbers />
-              </div>
+              </div> 
             </div>
           </div>
           {hayUsuario() && esCliente() && showTurno && <CrearTurno />}

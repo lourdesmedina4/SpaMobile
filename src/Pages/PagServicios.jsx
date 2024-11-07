@@ -11,10 +11,10 @@ function PagServicios() {
     <div className="min-h-screen flex flex-col w-full bg-gray-50 ">
       <main className="w-full flex-1">
         {/* Servicios de Spa */}
-        <section className="w-full bg-white">
+      {/*   <section className="w-full bg-white">
           <SpaServices />
         </section>
-
+ */}
         {/* Sección de Solicitar Turno */}
         <section className="w-full bg-gray-100 mt-8">
           <SolicitarTurno />
@@ -22,9 +22,9 @@ function PagServicios() {
       </main>
 
       {/* Sección de Comentarios */}
-      <footer className="w-full bg-gray-200 py-8">
+    {/*   <footer className="w-full bg-gray-200 py-8">
         <ComentariosSection />
-      </footer>
+      </footer> */}
     </div>
   );
 }

@@ -31,9 +31,9 @@ const Header2 = ({ menuOpen, setMenuOpen }) => {
   //para cuando no hay usuario logueado o es cliente
   const itemsCorporativo = [
     { text: "Inicio", path: "/" },
-    { text: "Servicios", path: "/servicios" },
+    { text: "Sacar Turno", path: "/sacarturno" },
     { text: "Contacto", path: "/contacto" },
-    esCliente() && { text: "Mi cuenta", path: "/MisTurnos" }
+    esCliente() && { text: "Mi cuenta", path: "/micuenta" }
   ].filter(Boolean);
 
 
@@ -75,14 +75,14 @@ const Header2 = ({ menuOpen, setMenuOpen }) => {
               >
                 Cerrar Sesión
               </button>
-              {esAdmin() && (
+             {/*  {esAdmin() && (
                 <button
                   onClick={handleRegisterProfesionalClick}
                   className="text-white bg-pink-500 hover:bg-pink-600 font-medium rounded-lg text-sm px-4 py-2 transition-colors"
                 >
                   Registrar Empleado
                 </button>
-              )}
+              )} */}
             </>
           ) : (
             <>
@@ -92,12 +92,7 @@ const Header2 = ({ menuOpen, setMenuOpen }) => {
               >
                 Iniciar Sesión
               </button>
-              <button
-                onClick={handleRegisterClick}
-                className="text-white bg-pink-500 hover:bg-pink-600 font-medium rounded-lg text-sm px-4 py-2 transition-colors"
-              >
-                Registrarse
-              </button>
+            
             </>
           )}
         </div>
