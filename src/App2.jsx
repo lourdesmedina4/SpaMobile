@@ -10,9 +10,10 @@ import Register from './Components/Register';
 import RegisterProfecional from './Components/RegisterProfecional';
 import Header2 from './Components/Header2';
 import { useLogin } from './context/LoginContext'; // Importar el contexto
-
+import PagCuenta from './Pages/PagCuenta';
 import PagTurnos from './Pages/PagTurnos';
 import HolaMundo from './Pages/PagCuenta';
+import Perfil from './cuenta/micuenta';
 
 
 function App2() {
@@ -31,7 +32,7 @@ function App2() {
           <Route path="/" element={<PagTurnos />} /> 
           <Route path="/sacarturno" element={<PagServicios/>} />
           <Route path="/contacto" element={<PagContacto/>} />
-          <Route path='/micuenta' element={<HolaMundo/>}/>
+          <Route path='/micuenta' element={<PagCuenta/>}/>
 
         </Routes>
       </div>
