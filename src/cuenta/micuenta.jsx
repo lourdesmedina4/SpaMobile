@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import useAxios from '../api/useAxios';
+import toast from 'react-hot-toast';
 
 const Perfil = () => {
     const [cliente, setCliente] = useState({
         idCliente: '',
         telefono: '',
         domicilio: '',
-        username: '',
+        nombreUsuario: '',
         nombre: '',
         apellido: '',
         dni: '',
@@ -29,7 +30,7 @@ const Perfil = () => {
         if (loading) {
             fetchCliente();
         }
-    }, [axiosInstance, loading]);
+    }, [loading]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -46,10 +47,10 @@ const Perfil = () => {
 
         try {
             await axiosInstance.put('/api/cliente/modificar', cliente);
-            alert('Datos actualizados con éxito');
+            toast.success('Datos actualizados con éxito');
         } catch (error) {
             console.error('Error al actualizar datos del cliente', error);
-            alert('Hubo un error al actualizar tus datos');
+            toast.error('Hubo un error al actualizar tus datos');
         }
     };
 
@@ -59,7 +60,18 @@ const Perfil = () => {
             {loading ? (
                 <p className="text-center text-gray-500">Cargando datos...</p>
             ) : (
+
                 <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-gray-700 font-medium">Nombre de Usuario: (No se puede cambiar)</label>
+                        <input
+                            type="text"
+                            name="username"
+                            value={cliente.nombreUsuario || ''}
+                            onChange={handleChange}
+                            className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+                        />
+                    </div>
                     <div>
                         <label className="block text-gray-700 font-medium">Teléfono:</label>
                         <input
@@ -80,16 +92,7 @@ const Perfil = () => {
                             className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
                         />
                     </div>
-                    <div>
-                        <label className="block text-gray-700 font-medium">Nombre de Usuario:</label>
-                        <input
-                            type="text"
-                            name="username"
-                            value={cliente.username || ''}
-                            onChange={handleChange}
-                            className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-                        />
-                    </div>
+                    
                     <div>
                         <label className="block text-gray-700 font-medium">Nombre:</label>
                         <input
