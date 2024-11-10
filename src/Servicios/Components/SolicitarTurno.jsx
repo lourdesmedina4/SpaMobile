@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import SpaNumbers from '../../Components/ui/NumberComponent';
 import CrearTurno from '../../Turnos/componentes/CrearTurno';
 import { useAuth } from "../../context/AuthContext";
-import { useLogin } from "../../context/LoginContext";
 import useAxios from '../../api/useAxios';
 import toast from 'react-hot-toast';
 
@@ -12,7 +11,6 @@ const SolicitarTurno =()=>{
     const [showTurno, setShowTurno] = useState(false);
     const [idUsuario, setIdUsuario] = useState();
     const { hayUsuario, esCliente } = useAuth();
-    const {handleRegisterClick}=useLogin();
     const axios = useAxios();
 
     const obtenerIdUsuario = async()=>{
@@ -39,7 +37,6 @@ const SolicitarTurno =()=>{
   } else {
       toast.error('Debe estar registrado para solicitar un turno.');
       setShowTurno(false);
-      handleRegisterClick();
   }
   }
 

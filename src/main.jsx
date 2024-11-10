@@ -7,18 +7,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App2 from './App2'
 import { AuthProvider } from './context/AuthContext';
 
-import { LoginProvider,  } from './context/LoginContext';
-
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <LoginProvider>
-          <Routes>
+        <Routes>
           <Route path='/*' element={<App2/>}/>
         </Routes>
-        </LoginProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>,

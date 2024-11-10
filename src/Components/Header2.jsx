@@ -1,7 +1,5 @@
 import SpaFinal from "../assets/SpaFinal.png";
-import { Link, Navigate, useLocation } from "react-router-dom";
-import { useState } from "react";
-import { useLogin } from '../context/LoginContext';
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 
 const Logo = () => (
@@ -14,28 +12,17 @@ const Logo = () => (
    
 );
 
-const NavigationElement = ({ text, path }) => (
-  <Link
-    to={path}
-    className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-  >
-    {text}
-  </Link>
-);
-
 const Header2 = ({ menuOpen, setMenuOpen }) => {
   const location = useLocation();
   const { esCliente, esProfesional, esAdmin, hayUsuario, logout, admin_profesional, admin_secretaria } = useAuth();
-  const { handleRegisterClick, handleLoginClick, handleRegisterProfesionalClick } = useLogin();
 
   //para cuando no hay usuario logueado o es cliente
   const itemsCorporativo = [
-    { text: "Inicio", path: "/" },
+    { text: "Inicio", path: "/misturnos" },
     { text: "Sacar Turno", path: "/sacarturno" },
     { text: "Contacto", path: "/contacto" },
     esCliente() && { text: "Mi cuenta", path: "/micuenta" }
   ].filter(Boolean);
-
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
@@ -67,40 +54,22 @@ const Header2 = ({ menuOpen, setMenuOpen }) => {
 
         {/* Botones de usuario a la derecha */}
         <div className="flex items-center space-x-4">
-          {hayUsuario() ? (
-            <>
-              <button
-                onClick={logout}
-                className="text-white bg-pink-500 hover:bg-pink-600 font-medium rounded-lg text-sm px-4 py-2 transition-colors"
-              >
-                Cerrar Sesión
-              </button>
-             {/*  {esAdmin() && (
-                <button
-                  onClick={handleRegisterProfesionalClick}
-                  className="text-white bg-pink-500 hover:bg-pink-600 font-medium rounded-lg text-sm px-4 py-2 transition-colors"
-                >
-                  Registrar Empleado
-                </button>
-              )} */}
-            </>
-          ) : (
-            <>
-              <button
-                onClick={handleLoginClick}
-                className="text-white bg-pink-500 hover:bg-pink-600 font-medium rounded-lg text-sm px-4 py-2 transition-colors"
-              >
-                Iniciar Sesión
-              </button>
-            
-            </>
+          {hayUsuario() && (
+            <button
+              onClick={() => {
+                logout(); // Pasar handleLogout al logout
+              }}
+              className="text-white bg-pink-500 hover:bg-pink-600 font-medium rounded-lg text-sm px-4 py-2 transition-colors"
+            >
+              Cerrar Sesión
+            </button>
           )}
         </div>
       </div>
 
       {/* Sidebar */}
       <div
-        className={`fixed top-[4rem] left-0 w-64 bg-white shadow-lg transition-all duration-300 ease-in-out h-[calc(100vh-4rem)] ${
+        className={`fixed top-[4rem] left-0 w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out h-[calc(100vh-4rem)] z-50 ${
           menuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -120,6 +89,7 @@ const Header2 = ({ menuOpen, setMenuOpen }) => {
       </div>
     </header>
   );
+  
 };
 
 export default Header2;

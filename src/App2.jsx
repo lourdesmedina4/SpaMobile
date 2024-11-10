@@ -1,47 +1,50 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import PagServicios from './Pages/PagServicios';
-import PagContacto
- from './Pages/PagContacto';
+import React, { useState} from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Login from './Components/Login';
-import Register from './Components/Register';
-import RegisterProfecional from './Components/RegisterProfecional';
+import { useAuth } from './context/AuthContext';
 import Header2 from './Components/Header2';
-import { useLogin } from './context/LoginContext'; // Importar el contexto
 
+import PagServicios from './Pages/PagServicios';
+import PagContacto from './Pages/PagContacto';
 import PagTurnos from './Pages/PagTurnos';
 import HolaMundo from './Pages/PagCuenta';
+import PagRegistro from './Pages/PagRegistro';
+import PagLogin from './Pages/PagLogin';
 
 
 function App2() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { isLoginModalOpen, isRegisterModalOpen, isRegisterProfesionalOpen, handleModalClose } = useLogin(); // Acceder al contexto
+  const [menuOpen, setMenuOpen] = useState(false);// Acceder al contexto
+  const {hayUsuario} = useAuth();
 
   return (
     <>
-    <div className='mb-20'>
-      <Header2 menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    </div>
-      
-      
-      <div className={`transition-all duration-300 ease-in-out ${menuOpen ? 'ml-64' : 'ml-0'}`}>
-        <Routes>
-          <Route path="/" element={<PagTurnos />} /> 
-          <Route path="/sacarturno" element={<PagServicios/>} />
-          <Route path="/contacto" element={<PagContacto/>} />
-          <Route path='/micuenta' element={<HolaMundo/>}/>
-
-        </Routes>
-      </div>
     
+      {hayUsuario() ? (
+        <>
+          <div className='mb-20'>
+            <Header2 menuOpen={menuOpen} setMenuOpen={setMenuOpen}  />
+          </div>
+          {/* ovarlay para oscurecer cuando el sidebar esta abierto */}
+          {menuOpen && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setMenuOpen(false)} // Cerrar el sidebar al hacer clic en el overlay
+            ></div>
+          )}
+        </>
+        ): <> </>
+      }
 
-    {isLoginModalOpen && <Login onClose={handleModalClose} />}
-    {isRegisterModalOpen && <Register onClose={handleModalClose} />}
-    {isRegisterProfesionalOpen && <RegisterProfecional onClose={handleModalClose} />}
-
-
+    
+      <Routes>
+        <Route path="/" element={<PagLogin/>} /> 
+        <Route path='/registro' element={<PagRegistro/>} />
+        <Route path="/misturnos" element={<PagTurnos />} /> 
+        <Route path="/sacarturno" element={<PagServicios />} />
+        <Route path="/contacto" element={<PagContacto />} />
+        <Route path='/micuenta' element={<HolaMundo />} />
+      </Routes>
 
     <Toaster
         position="top-center"

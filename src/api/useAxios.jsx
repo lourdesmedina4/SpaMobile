@@ -1,13 +1,11 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
-import { useLogin } from '../context/LoginContext';
 
 //holaaaa
 
 const useAxios = (options = {}) => {
   const { token, logout } = useAuth();
-  const { handleLoginClick } = useLogin();
   const { ignoreAuthError = false } = options;
 
   const API_URL = "https://amiable-learning-production.up.railway.app"
@@ -48,7 +46,6 @@ const useAxios = (options = {}) => {
         } else {
           toast.error('Su sesión expiró, inicie sesión nuevamente');
           logout();
-          handleLoginClick();
         }
       }
       return Promise.reject(error);

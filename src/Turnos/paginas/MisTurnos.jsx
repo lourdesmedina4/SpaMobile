@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import useAxios from '../../api/useAxios';
 import TurnoCard from '../utilidades/TurnoCard';
 import { useAuth } from '../../context/AuthContext';
-import { useLogin } from "../../context/LoginContext";
 import CrearTurno from '../componentes/CrearTurno';
 import toast from 'react-hot-toast';
 
@@ -12,7 +11,6 @@ const MisTurnos = () => {
   const [loading, setLoading] = useState(true);  
   const [error, setError] = useState(null);
   const { nombreUsuario, hayUsuario, esCliente } = useAuth();
-  const { handleRegisterClick } = useLogin();
   const [showTurno, setShowTurno] = useState(false);
 
   const fetchTurnos = async () => {
@@ -35,10 +33,7 @@ const MisTurnos = () => {
       setShowTurno(!showTurno);
     } else if (hayUsuario()) {
       toast.error('Debe ingresar como cliente para solicitar un turno.');
-    } else {
-      toast.error('Debe estar registrado para solicitar un turno.');
-      handleRegisterClick();
-    }
+    } 
   };
 
   const handleTurnoCreado = (nuevoTurno) => {
