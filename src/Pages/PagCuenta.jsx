@@ -1,7 +1,12 @@
+import Perfil from '../cuenta/micuenta';
 
-
-const HolaMundo = () => {
-    return <h1>Mi cuenta</h1>;
+const PagCuenta = () => {
+    return (
+        <div>
+            <h1>Cuenta</h1>
+            <Perfil />
+        </div>
+    );
 };
 
-export default HolaMundo;
+export default PagCuenta;

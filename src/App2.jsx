@@ -4,11 +4,12 @@ import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuth } from './context/AuthContext';
 import Header2 from './Components/Header2';
-
+import PagCuenta from './Pages/PagCuenta';
 import PagServicios from './Pages/PagServicios';
 import PagContacto from './Pages/PagContacto';
 import PagTurnos from './Pages/PagTurnos';
 import HolaMundo from './Pages/PagCuenta';
+import Perfil from './cuenta/micuenta';
 import PagRegistro from './Pages/PagRegistro';
 import PagLogin from './Pages/PagLogin';
 
@@ -43,7 +44,7 @@ function App2() {
         <Route path="/misturnos" element={<PagTurnos />} /> 
         <Route path="/sacarturno" element={<PagServicios />} />
         <Route path="/contacto" element={<PagContacto />} />
-        <Route path='/micuenta' element={<HolaMundo />} />
+        <Route path='/micuenta' element={<PagCuenta />} />
       </Routes>
 
     <Toaster
