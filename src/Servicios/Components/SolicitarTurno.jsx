@@ -23,19 +23,16 @@ const SolicitarTurno =()=>{
                 setIdUsuario(id);
             }
         }catch(error){
-        
+          toast.error(error.message);
     }
     }
 
   const handleTurnoClick = () => {
-    if (hayUsuario() && esCliente()) {
+    if (esCliente()) {
       obtenerIdUsuario();
       setShowTurno(true);
-  } else if (hayUsuario()) {
-      setShowTurno(false);
-      alert('Debe ingresar como cliente para solicitar un turno.');
   } else {
-      toast.error('Debe estar registrado para solicitar un turno.');
+      //toast.error('Debe estar registrado para solicitar un turno.');
       setShowTurno(false);
   }
   }
@@ -69,14 +66,14 @@ const SolicitarTurno =()=>{
                <button
                     size="lg"
                     onClick={handleTurnoClick}
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1"
+                    className="bg-indigo-600 hover:bg-indigo-700 mb-2 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1"
                   >
                     Pedir un Turno
                   </button>
               </div> 
             </div>
           </div>
-          {hayUsuario() && esCliente() && showTurno && <CrearTurno />}
+          {esCliente() && showTurno && <CrearTurno />}
         </section>
   </div>)
 

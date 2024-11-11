@@ -4,6 +4,7 @@ import TurnoCard from '../utilidades/TurnoCard';
 import { useAuth } from '../../context/AuthContext';
 import CrearTurno from '../componentes/CrearTurno';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const MisTurnos = () => {
   const axiosInstance = useAxios();  
@@ -12,6 +13,7 @@ const MisTurnos = () => {
   const [error, setError] = useState(null);
   const { nombreUsuario, hayUsuario, esCliente } = useAuth();
   const [showTurno, setShowTurno] = useState(false);
+  const navigate= useNavigate();
 
   const fetchTurnos = async () => {
     try {
@@ -29,11 +31,12 @@ const MisTurnos = () => {
   }, []);  
 
   const handleTurnoClick = () => {
-    if (hayUsuario() && esCliente()) {
+    /* if (hayUsuario() && esCliente()) {
       setShowTurno(!showTurno);
     } else if (hayUsuario()) {
       toast.error('Debe ingresar como cliente para solicitar un turno.');
-    } 
+    }  */
+   navigate('/sacarturno');
   };
 
   const handleTurnoCreado = (nuevoTurno) => {
@@ -72,7 +75,7 @@ const MisTurnos = () => {
                 onClick={handleTurnoClick}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-6"
               >
-                {showTurno ? 'Solicitar un Turno' : 'Solicitar un Turno'}
+                Solicitar un Turno
               </button>
 
               {hayUsuario() && esCliente() && showTurno && (

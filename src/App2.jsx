@@ -8,20 +8,19 @@ import PagCuenta from './Pages/PagCuenta';
 import PagServicios from './Pages/PagServicios';
 import PagContacto from './Pages/PagContacto';
 import PagTurnos from './Pages/PagTurnos';
-import HolaMundo from './Pages/PagCuenta';
-import Perfil from './cuenta/micuenta';
 import PagRegistro from './Pages/PagRegistro';
 import PagLogin from './Pages/PagLogin';
 
 
 function App2() {
   const [menuOpen, setMenuOpen] = useState(false);// Acceder al contexto
-  const {hayUsuario} = useAuth();
+  const {hayUsuario, esCliente} = useAuth();
+  const [estaLogin, setEstaLogin] = useState(true);
 
   return (
     <>
     
-      {hayUsuario() ? (
+      {esCliente() ? (
         <>
           <div className='mb-20'>
             <Header2 menuOpen={menuOpen} setMenuOpen={setMenuOpen}  />

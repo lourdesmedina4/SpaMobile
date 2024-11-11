@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { useAuth } from "../context/AuthContext";
 import axios from "../api/axios";
 import { useNavigate } from 'react-router-dom';
+import React, { useEffect} from 'react';
 
 
 const Login = ()=>{
@@ -12,8 +13,13 @@ const Login = ()=>{
   const {register, handleSubmit, setError, reset, 
   formState:{errors , isSubmitting}} = useForm();
 
-  const { login} = useAuth();
+  const { login, esCliente} = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(esCliente())
+      navigate('/misturnos');
+  });
 
   const onSubmit = async (data) => {
     try {
